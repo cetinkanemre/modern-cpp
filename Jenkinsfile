@@ -129,26 +129,26 @@ pipeline {
 				'''
 			}
 		}
-		stage('Push Image to Private Registry') {
-			when {
-				branch 'main'
-			}
+stage('Push Image to Private Registry') {
+    when {
+        branch 'main'
+    }
 
-			steps {
-				sh '''
-					docker push $FULL_IMAGE
-				'''
-			}
-		}
+    steps {
+        sh '''
+            docker push $FULL_IMAGE
+        '''
+    }
+}
 
-    post {
-        success {
-            echo 'completed successfully.'
-        }
+} // <-- stages kapanıyor
 
-        failure {
-            echo 'Pipeline failed.'
-			}
-		}
-	}
+post {
+    success {
+        echo 'completed successfully.'
+    }
+
+    failure {
+        echo 'Pipeline failed.'
+    }
 }
